@@ -7,6 +7,7 @@ on:
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
+
     permissions:
       contents: read
       pages: write
@@ -24,13 +25,15 @@ jobs:
 
       - name: Generar JavaDoc
         run: |
-          javadoc -d doc -encoding UTF-8 -charset UTF-8 \
-                  -windowtitle 'Biblioteca JavaDoc' src/Biblioteca.java
+          mkdir -p doc
+          javadoc -d doc \
+                  -sourcepath src \
+                  -subpackages .
 
       - name: Subir artefacto Pages
         uses: actions/upload-pages-artifact@v3
         with:
-          path: doc/
+          path: ./doc
 
       - name: Desplegar en GitHub Pages
         uses: actions/deploy-pages@v4
