@@ -27,8 +27,8 @@ jobs:
         run: |
           mkdir -p doc
           javadoc -d doc \
-                  -sourcepath src \
-                  -subpackages .
+                  -sourcepath src/main/java \
+                  -subpackages org.example
 
       - name: Subir artefacto Pages
         uses: actions/upload-pages-artifact@v3
